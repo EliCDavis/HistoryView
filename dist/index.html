@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>History</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="style.css" rel="stylesheet">
+        <style>
+            .md-button {
+                min-width: 30px;
+            }
+        </style>
+    </head>
+    <body layout="column">
+        
+    <hv-toolbar></hv-toolbar>
+        
+        <div flex layout="row" >
+            
+            <div flex="30" layout-margin style="overflow: auto">
+                <h1>History</h1>
+                <hv-history-controls></hv-history-controls>
+                <hr>
+                <hv-history-listing></hv-history-listing>
+            </div>
+
+            <hv-history-nodes layout="column" flex></hv-history-nodes>
+            
+        </div>
+            
+        <script src="main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+{
+    "name": "History View",
+    "manifest_version": 2,
+    "version": "1.0",
+    "chrome_url_overrides": {
+        "history": "index.html"
+    },
+    "permissions" : [
+        "history"
+    ]
+}

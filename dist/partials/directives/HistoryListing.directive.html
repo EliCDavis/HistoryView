@@ -1,0 +1,7 @@
+
+<div ng-repeat="item in listing.items" style="padding:3px;">
+    <md-checkbox ng-model="isChecked" aria-label="Finished?">
+        <h3 style="margin:0px;"><a href="{{item.url}}" target="_blank" ng-bind="item.title || item.url"></a></h3>
+    </md-checkbox>
+
+</div>
