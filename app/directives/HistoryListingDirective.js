@@ -35,12 +35,27 @@ function HistoryListingDirective(){
             var self = this;
 
             self.items = [];
+            $scope.selectedItems = [];
             
             History.loadedHistory$.safeApply($scope, function(history) {
                 console.log(history);
                 self.items = history;
+                $scope.selectedItems = [];
             }).subscribe();
             
+            $scope.getSelectedItems = function(){
+                
+                var selected =[];
+                
+                for (var i = 0; i < $scope.selectedItems.length; i ++) {
+                    if ($scope.selectedItems[i]) {
+                        selected.push(self.items[i]);
+                    }
+                }
+                
+                return selected;
+                
+            };
         }
     };
     

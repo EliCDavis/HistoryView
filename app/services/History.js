@@ -56,38 +56,61 @@ function HistoryService() {
 //                        chrome.history.getVisits({url: url}, processVisitsWithUrl(url));
 //                    }
 //                });
-        function(data){
-            self.loadedHistory$.onNext(data);
-        });
+                function (data) {
+                    self.loadedHistory$.onNext(data);
+                });
     };
-    
+
     self.getHistory();
-    
-    
+
+
     /**
      * Deletes all of the users history.
      * It's going to suck testing this function.
      * 
      * @returns {undefined}
      */
-    self.deleteAllHistory = function() {
-        chrome.history.deleteAll(function() {
+    self.deleteAllHistory = function () {
+        chrome.history.deleteAll(function () {
             self.loadedHistory$.onNext([]);
         });
     };
-    
+
     /**
      * Different from delete URL.  This removes the signle instance of the history
      * @param {type} item
      * @returns {undefined}
      */
-    self.deleteItem = function(item) {
+    self.deleteItem = function (item) {
         chrome.history.deleteRange({
-            startTime: item.lastVisitTime,
-            endTime: item.lastVisitTime
-        }, function(){
+            startTime: item.lastVisitTime - 1,
+            endTime: item.lastVisitTime + 1
+        }, function () {
             self.getHistory();
         });
     };
-    
+
+    self.deleteItems = function (items) {
+
+        if (!items.length) {
+            return;
+        }
+
+        var complete = new Rx.Subject();
+
+        items.forEach(function (item) {
+            chrome.history.deleteRange({
+                startTime: item.lastVisitTime - 1,
+                endTime: item.lastVisitTime + 1
+            }, function () {
+
+                complete.onNext(null);
+            });
+        });
+
+        complete.bufferWithCount(items.length).subscribe(function () {
+            self.getHistory();
+        });
+    };
+
 }

@@ -32,6 +32,12 @@ function HistoryControlDirective(){
         controllerAs: 'control',
         controller: /*@ngInject*/ function ($scope, History) {
             
+            var self = this;
+            
+            self.deleteSelected = function(){
+                History.deleteItems($scope.getSelectedItems());
+            };
+            
         }
     };
 }
