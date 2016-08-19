@@ -62,4 +62,32 @@ function HistoryService() {
     };
     
     self.getHistory();
+    
+    
+    /**
+     * Deletes all of the users history.
+     * It's going to suck testing this function.
+     * 
+     * @returns {undefined}
+     */
+    self.deleteAllHistory = function() {
+        chrome.history.deleteAll(function() {
+            self.loadedHistory$.onNext([]);
+        });
+    };
+    
+    /**
+     * Different from delete URL.  This removes the signle instance of the history
+     * @param {type} item
+     * @returns {undefined}
+     */
+    self.deleteItem = function(item) {
+        chrome.history.deleteRange({
+            startTime: item.lastVisitTime,
+            endTime: item.lastVisitTime
+        }, function(){
+            self.getHistory();
+        });
+    };
+    
 }

@@ -17,11 +17,10 @@ and open the template in the editor.
         </style>
     </head>
     <body layout="column">
-        
-    <hv-toolbar></hv-toolbar>
-        
+
+
         <div flex layout="row" >
-            
+
             <div flex="30" layout-margin style="overflow: auto">
                 <h1>History</h1>
                 <hv-history-controls></hv-history-controls>
@@ -29,10 +28,14 @@ and open the template in the editor.
                 <hv-history-listing></hv-history-listing>
             </div>
 
-            <hv-history-nodes layout="column" flex></hv-history-nodes>
-            
+            <div layout="column" flex>
+                <hv-toolbar></hv-toolbar>
+                <hv-history-nodes layout="column" flex></hv-history-nodes>
+            </div>
+
+
         </div>
-            
+
         <script src="main.js"></script>
     </body>
 </html>

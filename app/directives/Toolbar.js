@@ -30,8 +30,12 @@ function ToolbarDirective() {
         restrict: 'E',
         templateUrl: 'partials/directives/Toolbar.directive.html',
         controllerAs: 'toolbar',
-        controller: /*@ngInject*/ function () {
-           
+        controller: /*@ngInject*/ function (History) {
+
+            var self = this;
+
+            self.clearAllHistory = History.deleteAllHistory;
+
         }
     };
 

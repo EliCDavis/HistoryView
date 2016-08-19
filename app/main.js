@@ -1,4 +1,5 @@
 
+
 var angular = require('angular');
 var rxDecorateDirective = require('./3rdParty/rxDecorateDirective');
 
@@ -17,6 +18,6 @@ app.config(['$provide', function ($provide) {
 
 require('./services');
 require('./directives');
-require('./controllers');
+//require('./controllers');
 
 angular.bootstrap(document, ['History View']);

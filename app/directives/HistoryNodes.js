@@ -28,7 +28,7 @@ module.exports = HistoryNodes;
 function HistoryNodes() {
     return {
         restrict: 'E',
-        template: '<canvas style="width:100%;height:100%;"></canvas>',
+        template: '<canvas flex></canvas>',
         controllerAs: 'control',
         controller: /*@ngInject*/ function ($scope, $element, History) {
 
@@ -47,13 +47,24 @@ function HistoryNodes() {
                 graph.clearNodes();
 
                 history.forEach(function (item) {
-                    graph.createNode({
+                    
+                    var node = graph.createNode({
                         radius: 10 + item.visitCount,
                         renderData: {
                             color: "#1C5792",
                             name: item.title
                         }
                     });
+                    
+                    node.onclick = function(){
+                        console.log(item);
+                    };
+                    
+                    node.ondoubleclick = function(){
+                        var win = window.open(item.url, '_blank');
+                        win.focus();
+                    };
+                    
                 });
 
             }).subscribe();
